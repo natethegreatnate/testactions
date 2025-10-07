@@ -1,0 +1,30 @@
+name: pages
+on:
+  workflow_dispatch:
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: |
+          mkdir build
+          cd build
+          echo "<b>" > index.html
+          cat main.c >> index.html
+          echo "</b>" >> index.html
+          cd ..
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: build/
+  deploy:
+    needs: build
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4
