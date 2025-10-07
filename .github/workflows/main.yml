@@ -10,7 +10,7 @@ jobs:
           mkdir build
           cd build
           echo "<b>" > index.html
-          cat main.c >> index.html
+          cat test.c >> index.html
           echo "</b>" >> index.html
           cd ..
       - uses: actions/upload-pages-artifact@v3
