@@ -8,9 +8,9 @@ jobs:
       - uses: actions/checkout@v4
       - run: |
           mkdir build
-          echo "<b>" > build/index.html
+          echo "<b><pre>" > build/index.html
           cat test.c >> build/index.html
-          echo "</b>" >> build/index.html
+          echo "</pre></b>" >> build/index.html
       - uses: actions/upload-pages-artifact@v3
         with:
           path: build/
