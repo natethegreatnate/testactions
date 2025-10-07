@@ -3,13 +3,22 @@ name: C/C++ CI
 on:
   push:
     branches: [ "main" ]
+  workflow_dispatch:
+    
+    
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
 
     steps:
     - uses: actions/checkout@v4
     - name: build
       run: gcc test.c
+    - uses: actions/upload-artifact@v4
+      with:
+        name: binary
+        path: ./a.out
+    - name: run
+      run: ./a.out
+          
